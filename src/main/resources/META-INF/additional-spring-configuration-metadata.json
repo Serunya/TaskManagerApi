@@ -1,0 +1,18 @@
+{
+  "properties": [
+    {
+      "name": "jwt.secret",
+      "type": "java.lang.String",
+      "description": "se.asd."
+    },
+    {
+      "name": "jwt.token.validity",
+      "type": "java.lang.Long",
+      "description": "Description for jwt.token.validity."
+    },
+    {
+      "name": "jwt.refresh.validity",
+      "type": "java.lang.Long",
+      "description": "Description for jwt.refresh.validity."
+    }
+  ] }
