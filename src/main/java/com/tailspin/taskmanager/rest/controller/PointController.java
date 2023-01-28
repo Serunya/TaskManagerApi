@@ -2,6 +2,7 @@ package com.tailspin.taskmanager.rest.controller;
 
 import com.tailspin.taskmanager.model.Point;
 import com.tailspin.taskmanager.repository.PointsRepository;
+import com.tailspin.taskmanager.rest.payload.requests.PointStatusRequest;
 import com.tailspin.taskmanager.rest.payload.requests.PointsRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,12 +26,17 @@ public class PointController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping(path="/getPoints")
+        @GetMapping(path="/getPoints")
     public List<Point> getPoints(@RequestParam int taskId){
         return repository.getPointByTaskId(taskId);
     }
 
-
+    @PostMapping(path="/editPointStatus")
+    public ResponseEntity editPointStatus(@RequestBody PointStatusRequest request){
+        repository.updatePointStatus(request.getPointId(),request.isStatus());
+        System.out.println(request.getPointId() + " " + request.isStatus());
+        return ResponseEntity.ok().build();
+    }
 
 
 }

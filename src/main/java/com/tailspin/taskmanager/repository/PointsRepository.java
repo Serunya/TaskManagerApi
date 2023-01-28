@@ -22,6 +22,10 @@ public class PointsRepository {
 
     private final String SQL_ADD_POINT = "INSERT INTO points (content,isDone,taskId) VALUES (:content,:isDone,:taskId)";
     private final String SQL_GET_BY_TASKID = "SELECT * FROM points Where taskid = :taskId";
+    private final String SQL_EDIT_POINT_isDone = "UPDATE points SET isDone = :pointStatus WHERE id=:pointId";
+
+
+
     private final NamedParameterJdbcTemplate jdbcTemplate;
 
 
@@ -49,5 +53,12 @@ public class PointsRepository {
         return jdbcTemplate.query(SQL_GET_BY_TASKID,param, mapper);
     }
 
+
+    public void updatePointStatus(int pointId,boolean pointStatus){
+        var param = new MapSqlParameterSource();
+        param.addValue("pointId",pointId);
+        param.addValue("pointStatus",pointStatus);
+        jdbcTemplate.update(SQL_EDIT_POINT_isDone,param);
+    }
 
 }

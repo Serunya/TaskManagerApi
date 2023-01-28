@@ -59,7 +59,7 @@ public class SecurityConfiguration{
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeHttpRequests((authorize) -> authorize.requestMatchers("/api/auth/**").permitAll().anyRequest().authenticated());
+                .authorizeHttpRequests((authorize) -> authorize.requestMatchers("/chat/*").permitAll().requestMatchers("/api/auth/**").permitAll().anyRequest().authenticated());
 
         http.authenticationProvider(authenticationProvider());
 
